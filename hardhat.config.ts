@@ -1,5 +1,10 @@
 import hardhatToolboxMochaEthersPlugin from "@nomicfoundation/hardhat-toolbox-mocha-ethers";
 import { configVariable, defineConfig } from "hardhat/config";
+import "@nomicfoundation/hardhat-viem";
+import * as dotenv from "dotenv";
+dotenv.config();
+
+
 
 export default defineConfig({
   plugins: [hardhatToolboxMochaEthersPlugin],
@@ -31,8 +36,8 @@ export default defineConfig({
     sepolia: {
       type: "http",
       chainType: "l1",
-      url: configVariable("SEPOLIA_RPC_URL"),
-      accounts: [configVariable("SEPOLIA_PRIVATE_KEY")],
+      url: configVariable("https://eth-sepolia.g.alchemy.com/v2/-aVfNnBdA--EjDFbm9c4V"),
+      accounts: [process.env.SEPOLIA_PRIVATE_KEY!],
     },
   },
 });
