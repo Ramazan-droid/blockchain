@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Decentralized Crowdfunding DApp</title>
+  <link rel="stylesheet" href="style.css">
+  <script src=https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js></script>
+</head>
+<body>
+  <h1>Decentralized Crowdfunding DApp</h1>
+
+  <div class="container">
+    <button id="connect">Connect Wallet</button>
+    <p id="account">Not connected</p>
+  </div>
+
+  <div class="container">
+    <h2>Create Campaign</h2>
+    <input type="text" id="title" placeholder="Campaign title">
+    <input type="text" id="goal" placeholder="Funding goal in ETH">
+    <input type="text" id="duration" placeholder="Duration in seconds">
+    <button id="createCampaign">Create Campaign</button>
+    <p id="createStatus"></p>
+  </div>
+
+  <div class="container">
+    <h2>Contribute</h2>
+    <input type="text" id="campaignId" placeholder="Campaign ID">
+    <input type="text" id="amount" placeholder="Amount in ETH">
+    <button id="contribute">Contribute</button>
+    <p id="contributeStatus"></p>
+  </div>
+
+  <div class="container">
+    <h2>Reward Tokens</h2>
+    <button id="checkBalance">Check My ETK Balance</button>
+    <p id="balance"></p>
+  </div>
+
+  <div class="container">
+    <h2>Active Campaigns</h2>
+    <div id="campaignList"></div>
+  </div>
+
+  <script src="crowdfundingABI.js"></script>
+  <script src="rewardtokenabi.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
