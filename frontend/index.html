@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decentralized Crowdfunding DApp</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Decentralized Crowdfunding Platform</h1>
+        <p class="subtitle">Ethereum Sepolia Testnet • Educational Project</p>
+
+        <!-- Wallet Connection -->
+        <div class="card">
+            <h2>Wallet Connection</h2>
+            <button id="connectBtn" class="btn btn-primary">Connect MetaMask</button>
+            <div class="wallet-info">
+                <div class="info-row">
+                    <span class="label">Address:</span>
+                    <span id="walletAddress" class="value">Not connected</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Network:</span>
+                    <span id="networkInfo" class="value">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">ETH Balance:</span>
+                    <span id="ethBalance" class="value">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">CRWD Tokens:</span>
+                    <span id="tokenBalance" class="value">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Campaign -->
+        <div class="card">
+            <h2>Create New Campaign</h2>
+            <div class="form-group">
+                <input type="text" id="titleInput" placeholder="Campaign Title" class="form-control" value="Test Campaign">
+                <input type="number" id="goalInput" placeholder="Goal (ETH)" class="form-control" step="0.001" min="0.001" value="0.1">
+                <input type="number" id="durationInput" placeholder="Duration (days)" class="form-control" min="1" max="365" value="7">
+                <button id="createBtn" class="btn btn-success">Create Campaign</button>
+            </div>
+            <div id="createStatus" class="status"></div>
+        </div>
+
+        <!-- Contribute -->
+        <div class="card">
+            <h2>Contribute to Campaign</h2>
+            <div class="form-group">
+                <input type="number" id="contributeId" placeholder="Campaign ID" class="form-control" value="0">
+                <input type="number" id="amountInput" placeholder="Amount (ETH)" class="form-control" step="0.001" min="0.001" value="0.01">
+                <button id="contributeBtn" class="btn btn-warning">Contribute ETH</button>
+            </div>
+            <div id="contributeStatus" class="status"></div>
+        </div>
+
+        <!-- Finalize Campaign -->
+        <div class="card">
+            <h2>Finalize Campaign</h2>
+            <div class="form-group">
+                <input type="number" id="finalizeId" placeholder="Campaign ID" class="form-control" value="0">
+                <button id="finalizeBtn" class="btn btn-danger">Finalize Campaign</button>
+            </div>
+            <div id="finalizeStatus" class="status"></div>
+        </div>
+
+        <!-- Campaigns List -->
+        <div class="card">
+            <h2>All Campaigns</h2>
+            <button id="refreshBtn" class="btn btn-secondary">Refresh List</button>
+            <div id="campaignsContainer" class="campaigns-grid"></div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="card instructions">
+            <h3>How to Use This DApp:</h3>
+            <ol>
+                <li>Click "Connect MetaMask" and switch to <strong>Sepolia Test Network</strong></li>
+                <li>Get test ETH from <a href="https://sepoliafaucet.com" target="_blank">Sepolia Faucet</a></li>
+                <li>Create a campaign or contribute to existing ones</li>
+                <li>Receive CRWD tokens as rewards for contributions</li>
+                <li>All transactions use test ETH only (no real money)</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="crowdfundingABI.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
