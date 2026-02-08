@@ -141,21 +141,50 @@ function updateNetworkInfo() {
     }
 }
 
+// async function updateBalances() {
+//     try {
+//         const ethBalance = await provider.getBalance(account);
+//         ethBalanceEl.textContent = `${ethers.utils.formatEther(ethBalance).substring(0, 8)} ETH`;
+
+//         const tokenAddress = await crowdfundingContract.getTokenAddress();
+//         const tokenContract = new ethers.Contract(
+//             tokenAddress,
+//             ["function balanceOf(address) view returns (uint256)", "function decimals() view returns (uint8)"],
+//             signer
+//         );
+
+//         const tokenBalance = await tokenContract.balanceOf(account);
+//         const decimals = await tokenContract.decimals();
+//         tokenBalanceEl.textContent = `${ethers.utils.formatUnits(tokenBalance, decimals).substring(0, 8)} CRWD`;
+//     } catch (error) {
+//         console.error('Balance update error:', error);
+//     }
+// }
+
 async function updateBalances() {
     try {
+        // ETH balance
         const ethBalance = await provider.getBalance(account);
-        ethBalanceEl.textContent = `${ethers.utils.formatEther(ethBalance).substring(0, 8)} ETH`;
+        ethBalanceEl.textContent = `${ethers.utils.formatEther(ethBalance)} ETH`;
 
+        // Token balance
         const tokenAddress = await crowdfundingContract.getTokenAddress();
         const tokenContract = new ethers.Contract(
             tokenAddress,
-            ["function balanceOf(address) view returns (uint256)", "function decimals() view returns (uint8)"],
+            [
+                "function balanceOf(address) view returns (uint256)",
+                "function decimals() view returns (uint8)",
+                "function symbol() view returns (string)"
+            ],
             signer
         );
 
         const tokenBalance = await tokenContract.balanceOf(account);
         const decimals = await tokenContract.decimals();
-        tokenBalanceEl.textContent = `${ethers.utils.formatUnits(tokenBalance, decimals).substring(0, 8)} CRWD`;
+        const symbol = await tokenContract.symbol();
+
+        tokenBalanceEl.textContent =
+            `${ethers.utils.formatUnits(tokenBalance, decimals)} ${symbol}`;
     } catch (error) {
         console.error('Balance update error:', error);
     }
